@@ -39,11 +39,11 @@ class NetworkLittleEndianNBTStream extends LittleEndianNBTStream{
 		$this->put(Binary::writeVarInt($v));
 	}
 
-	public function getLong() : int{
+	public function getLong(){
 		return Binary::readVarLong($this->buffer, $this->offset);
 	}
 
-	public function putLong(int $v) : void{
+	public function putLong($v) : void{
 		$this->put(Binary::writeVarLong($v));
 	}
 

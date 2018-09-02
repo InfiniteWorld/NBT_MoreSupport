@@ -33,10 +33,10 @@ class LongTag extends NamedTag{
 	private $value;
 
 	/**
-	 * @param string $name
-	 * @param int    $value
+	 * @param string     $name
+	 * @param int|string $value
 	 */
-	public function __construct(string $name = "", int $value = 0){
+	public function __construct(string $name = "", $value = 0){
 		parent::__construct($name);
 		$this->value = $value;
 	}

@@ -51,11 +51,11 @@ class LittleEndianNBTStream extends NBTStream{
 		$this->put(Binary::writeLInt($v));
 	}
 
-	public function getLong() : int{
+	public function getLong(){
 		return Binary::readLLong($this->get(8));
 	}
 
-	public function putLong(int $v) : void{
+	public function putLong($v) : void{
 		$this->put(Binary::writeLLong($v));
 	}
 

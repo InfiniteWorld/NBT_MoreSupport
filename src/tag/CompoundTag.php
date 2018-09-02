@@ -314,11 +314,11 @@ class CompoundTag extends NamedTag implements \ArrayAccess, \Iterator, \Countabl
 	}
 
 	/**
-	 * @param string $name
-	 * @param int    $value
-	 * @param bool   $force
+	 * @param string     $name
+	 * @param int|string $value
+	 * @param bool       $force
 	 */
-	public function setLong(string $name, int $value, bool $force = false) : void{
+	public function setLong(string $name, $value, bool $force = false) : void{
 		$this->setTag(new LongTag($name, $value), $force);
 	}
 

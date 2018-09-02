@@ -197,7 +197,7 @@ abstract class NBTStream{
 
 	abstract public function getLong();
 
-	abstract public function putLong(int $v) : void;
+	abstract public function putLong($v) : void;
 
 
 	abstract public function getFloat() : float;
