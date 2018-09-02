@@ -54,9 +54,9 @@ class LongTag extends NamedTag{
 	}
 
 	/**
-	 * @return int
+	 * @return int|string
 	 */
-	public function getValue() : int{
+	public function getValue(){
 		return $this->value;
 	}
 }

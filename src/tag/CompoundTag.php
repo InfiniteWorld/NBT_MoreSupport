@@ -221,9 +221,9 @@ class CompoundTag extends NamedTag implements \ArrayAccess, \Iterator, \Countabl
 	 * @param int|null $default
 	 * @param bool     $badTagDefault
 	 *
-	 * @return int
+	 * @return int|string
 	 */
-	public function getLong(string $name, ?int $default = null, bool $badTagDefault = false) : int{
+	public function getLong(string $name, ?int $default = null, bool $badTagDefault = false){
 		return $this->getTagValue($name, LongTag::class, $default, $badTagDefault);
 	}
 

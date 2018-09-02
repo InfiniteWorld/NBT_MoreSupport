@@ -51,11 +51,11 @@ class BigEndianNBTStream extends NBTStream{
 		$this->buffer .= Binary::writeInt($v);
 	}
 
-	public function getLong() : int{
+	public function getLong(){
 		return Binary::readLong($this->get(8));
 	}
 
-	public function putLong(int $v) : void{
+	public function putLong($v) : void{
 		$this->buffer .= Binary::writeLong($v);
 	}
 
