@@ -24,11 +24,10 @@ declare(strict_types=1);
 namespace pocketmine\nbt\tag;
 
 use pocketmine\nbt\NBT;
-use pocketmine\nbt\NBTStream;
+use pocketmine\nbt\NbtStreamReader;
+use pocketmine\nbt\NbtStreamWriter;
 
-#include <rules/NBT.h>
-
-class DoubleTag extends NamedTag{
+final class DoubleTag extends NamedTag{
 	/** @var float */
 	private $value;
 
@@ -45,12 +44,12 @@ class DoubleTag extends NamedTag{
 		return NBT::TAG_Double;
 	}
 
-	public function read(NBTStream $nbt) : void{
-		$this->value = $nbt->getDouble();
+	public function read(NbtStreamReader $reader) : void{
+		$this->value = $reader->readDouble();
 	}
 
-	public function write(NBTStream $nbt) : void{
-		$nbt->putDouble($this->value);
+	public function write(NbtStreamWriter $writer) : void{
+		$writer->writeDouble($this->value);
 	}
 
 	/**

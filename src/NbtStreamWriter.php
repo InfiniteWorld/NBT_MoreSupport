@@ -23,33 +23,40 @@ declare(strict_types=1);
 
 namespace pocketmine\nbt;
 
-use PHPUnit\Framework\TestCase;
+use pocketmine\nbt\tag\NamedTag;
 
-class CreateTagTest extends TestCase{
+/**
+ * @internal
+ */
+interface NbtStreamWriter{
+
+	public function writeTag(NamedTag $tag) : void;
+
+	public function writeEnd() : void;
+
+	public function writeByte(int $v) : void;
+
+	public function writeShort(int $v) : void;
+
+	public function writeInt(int $v) : void;
+
+	public function writeLong(int $v) : void;
+
+	public function writeFloat(float $v) : void;
+
+	public function writeDouble(float $v) : void;
+
+	public function writeByteArray(string $v) : void;
 
 	/**
-	 * Tests that all tags with declared constants in NBT can be created (with the exception of TAG_End)
+	 * @param string $v
 	 *
-	 * @throws \Exception
-	 * @throws \ReflectionException
+	 * @throws \InvalidArgumentException if the string is too long
 	 */
-	public function testCreateTags() : void{
-		$consts = (new \ReflectionClass(NBT::class))->getConstants();
+	public function writeString(string $v) : void;
 
-		/**
-		 * @var string $name
-		 */
-		foreach($consts as $name => $value){
-			if(strpos($name, "TAG_") === 0 and $name !== "TAG_End" and is_int($value)){
-				/** @var int $value */
-
-				try{
-					$tag = NBT::createTag($value);
-					self::assertEquals($value, $tag->getType());
-				}catch(NbtDataException $e){
-					self::assertTrue(false, "Could not create tag of type $name");
-				}
-			}
-		}
-	}
+	/**
+	 * @param int[] $array
+	 */
+	public function writeIntArray(array $array) : void;
 }

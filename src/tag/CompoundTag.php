@@ -24,11 +24,22 @@ declare(strict_types=1);
 namespace pocketmine\nbt\tag;
 
 use pocketmine\nbt\NBT;
-use pocketmine\nbt\NBTStream;
+use pocketmine\nbt\NbtStreamReader;
+use pocketmine\nbt\NbtStreamWriter;
+use function assert;
+use function count;
+use function current;
+use function get_class;
+use function gettype;
+use function is_a;
+use function is_int;
+use function is_object;
+use function key;
+use function next;
+use function reset;
+use function str_repeat;
 
-#include <rules/NBT.h>
-
-class CompoundTag extends NamedTag implements \ArrayAccess, \Iterator, \Countable{
+final class CompoundTag extends NamedTag implements \ArrayAccess, \Iterator, \Countable{
 	use NoDynamicFieldsTrait;
 
 	/** @var NamedTag[] */
@@ -133,7 +144,7 @@ class CompoundTag extends NamedTag implements \ArrayAccess, \Iterator, \Countabl
 	 * Removes the child tags with the specified names from the CompoundTag. This function accepts a variadic list of
 	 * strings.
 	 *
-	 * @param string[] ...$names
+	 * @param string ...$names
 	 */
 	public function removeTag(string ...$names) : void{
 		foreach($names as $name){
@@ -425,21 +436,21 @@ class CompoundTag extends NamedTag implements \ArrayAccess, \Iterator, \Countabl
 		return NBT::TAG_Compound;
 	}
 
-	public function read(NBTStream $nbt) : void{
+	public function read(NbtStreamReader $reader) : void{
 		$this->value = [];
 		do{
-			$tag = $nbt->readTag();
+			$tag = $reader->readTag();
 			if($tag !== null and $tag->__name !== ""){
 				$this->value[$tag->__name] = $tag;
 			}
-		}while($tag !== null and !$nbt->feof());
+		}while($tag !== null);
 	}
 
-	public function write(NBTStream $nbt) : void{
+	public function write(NbtStreamWriter $writer) : void{
 		foreach($this->value as $tag){
-			$nbt->writeTag($tag);
+			$writer->writeTag($tag);
 		}
-		$nbt->writeEnd();
+		$writer->writeEnd();
 	}
 
 	public function toString(int $indentation = 0) : string{
