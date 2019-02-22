@@ -28,7 +28,7 @@ use pocketmine\nbt\NbtStreamReader;
 use pocketmine\nbt\NbtStreamWriter;
 
 final class LongTag extends NamedTag{
-	/** @var int */
+	/** @var int|string */
 	private $value;
 
 	/**

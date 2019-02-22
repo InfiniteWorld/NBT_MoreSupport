@@ -50,11 +50,11 @@ class BigEndianNbtSerializer extends BaseNbtSerializer{
 		$this->buffer->putInt($v);
 	}
 
-	public function readLong() : int{
+	public function readLong(){
 		return $this->buffer->getLong();
 	}
 
-	public function writeLong(int $v) : void{
+	public function writeLong($v) : void{
 		$this->buffer->putLong($v);
 	}
 

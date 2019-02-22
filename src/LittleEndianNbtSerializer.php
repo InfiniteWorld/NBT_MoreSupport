@@ -50,11 +50,11 @@ class LittleEndianNbtSerializer extends BaseNbtSerializer{
 		$this->buffer->putLInt($v);
 	}
 
-	public function readLong() : int{
+	public function readLong(){
 		return $this->buffer->getLLong();
 	}
 
-	public function writeLong(int $v) : void{
+	public function writeLong($v) : void{
 		$this->buffer->putLLong($v);
 	}
 

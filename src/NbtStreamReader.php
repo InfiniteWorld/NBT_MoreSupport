@@ -68,10 +68,10 @@ interface NbtStreamReader{
 	public function readInt() : int;
 
 	/**
-	 * @return int
+	 * @return int|string
 	 * @throws BinaryDataException
 	 */
-	public function readLong() : int;
+	public function readLong();
 
 	/**
 	 * @return float

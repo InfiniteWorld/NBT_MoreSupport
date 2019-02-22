@@ -40,7 +40,7 @@ interface NbtStreamWriter{
 
 	public function writeInt(int $v) : void;
 
-	public function writeLong(int $v) : void;
+	public function writeLong($v) : void;
 
 	public function writeFloat(float $v) : void;
 
