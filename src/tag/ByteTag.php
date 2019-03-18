@@ -35,7 +35,7 @@ final class ByteTag extends NamedTag{
 	 * @param string $name
 	 * @param int    $value
 	 */
-	public function __construct(string $name = "", int $value = 0){
+	public function __construct(string $name, int $value){
 		parent::__construct($name);
 		if($value < -128 or $value > 127){
 			throw new \InvalidArgumentException("Value $value is too large!");
@@ -47,8 +47,8 @@ final class ByteTag extends NamedTag{
 		return NBT::TAG_Byte;
 	}
 
-	public function read(NbtStreamReader $reader) : void{
-		$this->value = $reader->readSignedByte();
+	public static function read(string $name, NbtStreamReader $reader) : NamedTag{
+		return new self($name, $reader->readSignedByte());
 	}
 
 	public function write(NbtStreamWriter $writer) : void{
