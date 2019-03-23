@@ -336,9 +336,9 @@ final class CompoundTag extends Tag implements \ArrayAccess, \Iterator, \Countab
 	}
 
 	/**
-	 * @param string      $name
+	 * @param string     $name
 	 * @param int|string $value
-	 * @param bool        $force
+	 * @param bool       $force
 	 *
 	 * @return $this
 	 */
