@@ -26,18 +26,18 @@ namespace pocketmine\nbt\tag;
 use pocketmine\nbt\NBT;
 use pocketmine\nbt\NbtStreamReader;
 use pocketmine\nbt\NbtStreamWriter;
+use function func_num_args;
 use function strlen;
 
-final class StringTag extends NamedTag{
+final class StringTag extends Tag{
 	/** @var string */
 	private $value;
 
 	/**
-	 * @param string $name
 	 * @param string $value
 	 */
-	public function __construct(string $name, string $value){
-		parent::__construct($name);
+	public function __construct(string $value){
+		self::restrictArgCount(__METHOD__, func_num_args(), 1);
 		if(strlen($value) > 32767){
 			throw new \InvalidArgumentException("StringTag cannot hold more than 32767 bytes, got string of length " . strlen($value));
 		}
@@ -48,8 +48,8 @@ final class StringTag extends NamedTag{
 		return NBT::TAG_String;
 	}
 
-	public static function read(string $name, NbtStreamReader $reader) : NamedTag{
-		return new self($name, $reader->readString());
+	public static function read(NbtStreamReader $reader) : self{
+		return new self($reader->readString());
 	}
 
 	public function write(NbtStreamWriter $writer) : void{
